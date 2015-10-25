@@ -27,6 +27,7 @@ var srcFiles = [
 	'./node_modules/color/dist/color.min.js',
 	'./src/core/core.js',
 	'./src/core/core.helpers.js',
+	'./src/core/core.propertyChecker.js', // insert before so that others can use it as they load
 	'./src/core/core.chart.js',
 	'./src/core/core.element.js',
 	'./src/core/**',

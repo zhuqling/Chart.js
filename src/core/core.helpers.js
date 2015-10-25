@@ -244,9 +244,15 @@
 				return "chart-" + id++;
 			};
 		})(),
+		error = helpers.error = function(str) {
+			if (window.console && typeof window.console.error === 'function') console.error(str);
+		},
 		warn = helpers.warn = function(str) {
 			//Method for warning of errors
 			if (window.console && typeof window.console.warn === "function") console.warn(str);
+		},
+		log = helpers.log = function(str) {
+			if (window.console && typeof window.console.log === "function") console.log(str);
 		},
 		amd = helpers.amd = (typeof define === 'function' && define.amd),
 		//-- Math methods
