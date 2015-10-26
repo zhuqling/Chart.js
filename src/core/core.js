@@ -58,6 +58,12 @@
 		Chart.helpers.retinaScale(this);
 
 		if (config) {
+			if (config.options) {
+				// Check options
+				var errors = Chart.propertyChecker.checkConfig(config.options);
+				Chart.propertyChecker.notifyPropertyErrors(errors);
+			}
+
 			this.controller = new Chart.Controller(this);
 		}
 

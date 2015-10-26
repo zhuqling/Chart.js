@@ -557,4 +557,79 @@
 		}
 	});
 
+	// Add a check for old v1 scale properties
+	Chart.propertyChecker.registerCheck(function(config) {
+		var errors = [];
+
+		if (config.showScale !== undefined) {
+			errors.push(Chart.propertyChecker.generateWarning("v1.0 'showScale' property has been deprecated. Use 'display' property."));
+		}
+
+		if (config.scaleOverride !== undefined) {
+			errors.push(Chart.propertyChecker.generateWarning("v1.0 'scaleOverride' property has been deprecated. Use 'afterBuildTicks' hook."));
+		}
+
+		if (config.scaleLineColor !== undefined) {
+			errors.push(Chart.propertyChecker.generateWarning("v1.0 'scaleLineColor' property has been deprecated. Use 'gridLines.color' property."));
+		}
+
+		if (config.scaleLineWidth !== undefined) {
+			errors.push(Chart.propertyChecker.generateWarning("v1.0 'scaleLineWidth' property has been deprecated. Use 'gridLines.lineWidth' property."));
+		}
+
+		if (config.scaleShowLabels !== undefined) {
+			errors.push(Chart.propertyChecker.generateWarning("v1.0 'scaleShowLabels' property has been deprecated. Use 'ticks.show' property."));
+		}
+
+		if (typeof config.scaleLabel === 'string') {
+			errors.push(Chart.propertyChecker.generateWarning("v1.0 'scaleLabel' template has been deprecated. Use 'ticks.callback' property."));
+		}
+
+		if (config.scaleIntegersOnly !== undefined) {
+			errors.push(Chart.propertyChecker.generateWarning("v1.0 'scaleIntegersOnly' property has been deprecated."));
+		}
+
+		if (config.scaleBeginAtZero !== undefined) {
+			errors.push(Chart.propertyChecker.generateWarning("v1.0 'scaleBeginAtZero' property has been deprecated. Use 'ticks.beginAtZero' property."));
+		}
+
+		if (config.scaleFontFamily !== undefined) {
+			errors.push(Chart.propertyChecker.generateWarning("v1.0 'scaleFontFamily' property has been deprecated. Use 'ticks.fontFamily' property."));
+		}
+
+		if (config.scaleFontSize !== undefined) {
+			errors.push(Chart.propertyChecker.generateWarning("v1.0 'scaleFontSize' property has been deprecated. Use 'ticks.fontSize' property."));
+		}
+
+		if (config.scaleFontStyle !== undefined) {
+			errors.push(Chart.propertyChecker.generateWarning("v1.0 'scaleFontStyle' property has been deprecated. Use 'ticks.fontStyle' property."));
+		}
+
+		if (config.scaleFontColor !== undefined) {
+			errors.push(Chart.propertyChecker.generateWarning("v1.0 'scaleFontColor' property has been deprecated. Use 'ticks.fontColor' property."));
+		}
+
+		return errors;
+	});
+
+	// Add a check for old v2 scale properties
+	Chart.propertyChecker.registerCheck(function(config) {
+		var errors = [];
+
+		function userCallbackFunction(axisConfig) {
+			if (axisConfig.ticks.userCallback) {
+				errors.push(Chart.propertyChecker.generateWarning("Property 'userCallback' has been deprecated since v2.0.0-beta0. Use 'callback' property instead"));
+			}
+		}
+
+		if (config.xAxes && helpers.isArray(config.xAxes)) {
+			helpers.each(config.xAxes, userCallbackFunction);
+		}
+
+		if (config.yAxes && helpers.isArray(config.yAxes)) {
+			helpers.each(config.xAxes, userCallbackFunction);
+		}
+
+		return errors;
+	});
 }).call(this);

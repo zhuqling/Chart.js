@@ -12,8 +12,8 @@
 		error: 'error'
 	};
 
-	if (object.freeze) {
-		object.freeze(ETypes);
+	if (Object.freeze) {
+		Object.freeze(ETypes);
 	}
 
 	Chart.propertyChecker = {
@@ -37,7 +37,7 @@
 
 				if (helpers.isArray(checkFunctionErrors) && checkFunctionErrors.length > 0) {
 					// Move to our array
-					Array.push.call(this.errors, checkFunctionErrors);
+					Array.prototype.push.apply(errors, checkFunctionErrors);
 				}
 			});
 
@@ -50,9 +50,9 @@
 				if (error.type === ETypes.log) {
 					helpers.log(error.message);
 				} else if (error.type === ETypes.warning) {
-					helpers.error(error.message);
-				} else if (error.type === ETypes.error) {
 					helpers.warn(error.message);
+				} else if (error.type === ETypes.error) {
+					helpers.error(error.message);
 				} 
 			});
 		},
