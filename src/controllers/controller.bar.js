@@ -299,10 +299,7 @@
 		},
 
 		calculateBarY: function(index, datasetIndex) {
-
-			var xScale = this.getScaleForID(this.getDataset().xAxisID);
 			var yScale = this.getScaleForID(this.getDataset().yAxisID);
-
 			var value = this.getDataset().data[index];
 
 			if (yScale.options.stacked) {

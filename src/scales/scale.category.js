@@ -11,11 +11,11 @@
     };
 
     var DatasetScale = Chart.Scale.extend({
-        buildTicks: function(index) {
+        buildTicks: function() {
             this.ticks = this.data.labels;
         },
 
-        getLabelForIndex: function(index, datasetIndex) {
+        getLabelForIndex: function(index) {
             return this.ticks[index];
         },
 

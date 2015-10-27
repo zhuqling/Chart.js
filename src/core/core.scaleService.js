@@ -35,21 +35,21 @@
 
 			if (chartInstance) {
 				var leftScales = helpers.where(chartInstance.scales, function(scaleInstance) {
-					return scaleInstance.options.position == "left";
+					return scaleInstance.options.position === "left";
 				});
 				var rightScales = helpers.where(chartInstance.scales, function(scaleInstance) {
-					return scaleInstance.options.position == "right";
+					return scaleInstance.options.position === "right";
 				});
 				var topScales = helpers.where(chartInstance.scales, function(scaleInstance) {
-					return scaleInstance.options.position == "top";
+					return scaleInstance.options.position === "top";
 				});
 				var bottomScales = helpers.where(chartInstance.scales, function(scaleInstance) {
-					return scaleInstance.options.position == "bottom";
+					return scaleInstance.options.position === "bottom";
 				});
 
 				// Scales that overlay the chartarea such as the radialLinear scale
 				var chartAreaScales = helpers.where(chartInstance.scales, function(scaleInstance) {
-					return scaleInstance.options.position == "chartArea";
+					return scaleInstance.options.position === "chartArea";
 				});
 
 				// Essentially we now have any number of scales on each of the 4 sides.
@@ -278,8 +278,6 @@
 				// Position the scales
 				var left = xPadding;
 				var top = yPadding;
-				var right = 0;
-				var bottom = 0;
 
 				var verticalScalePlacer = function(scaleInstance) {
 					scaleInstance.left = left;

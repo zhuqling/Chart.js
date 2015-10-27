@@ -83,7 +83,7 @@
 			// these 
 			var scaleLabelMoments = [];
 			if (this.data.labels && this.data.labels.length > 0) {
-				helpers.each(this.data.labels, function(label, index) {
+				helpers.each(this.data.labels, function(label) {
 					var labelMoment = this.parseTime(label);
 					if (this.options.time.round) {
 						labelMoment.startOf(this.options.time.round);
@@ -107,11 +107,11 @@
 				this.lastTick = null;
 			}
 
-			helpers.each(this.data.datasets, function(dataset, datasetIndex) {
+			helpers.each(this.data.datasets, function(dataset) {
 				var momentsForDataset = [];
 
 				if (typeof dataset.data[0] === 'object') {
-					helpers.each(dataset.data, function(value, index) {
+					helpers.each(dataset.data, function(value) {
 						var labelMoment = this.parseTime(this.getRightValue(value));
 						if (this.options.time.round) {
 							labelMoment.startOf(this.options.time.round);
@@ -135,8 +135,7 @@
 			this.lastTick = this.lastTick.clone();
 		},
 
-		buildTicks: function(index) {
-
+		buildTicks: function() {
 			this.ticks = [];
 			this.labelMoments = [];
 
@@ -219,14 +218,12 @@
 
 			if (this.isHorizontal()) {
 				var innerWidth = this.width - (this.paddingLeft + this.paddingRight);
-				var valueWidth = innerWidth / Math.max(this.ticks.length - 1, 1);
 				var valueOffset = (innerWidth * decimal) + this.paddingLeft;
 
 				return this.left + Math.round(valueOffset);
 			} else {
 				//return this.top + (decimal * (this.height / this.ticks.length));
 				var innerHeight = this.height - (this.paddingTop + this.paddingBottom);
-				var valueHeight = innerHeight / Math.max(this.ticks.length - 1, 1);
 				var heightOffset = (innerHeight * decimal) + this.paddingTop;
 
 				return this.top + Math.round(heightOffset);
@@ -234,7 +231,7 @@
 		},
 		parseTime: function(label) {
 			// Date objects
-			if (typeof label.getMonth === 'function' || typeof label == 'number') {
+			if (typeof label.getMonth === 'function' || typeof label === 'number') {
 				return moment(label);
 			}
 			// Moment support

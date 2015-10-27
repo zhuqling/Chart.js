@@ -374,7 +374,7 @@
 			this.lastTooltipActive = this.lastTooltipActive || [];
 
 			// Find Active Elements for hover and tooltips
-			if (e.type == 'mouseout') {
+			if (e.type === 'mouseout') {
 				this.active = this.tooltipActive = [];
 			} else {
 				this.active = function() {

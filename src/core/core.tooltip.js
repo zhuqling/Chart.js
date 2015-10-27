@@ -201,16 +201,13 @@
 		},
 
 		update: function() {
-
-			var ctx = this._chart.ctx;
-
 			var element = this._active[0],
 				xLabel,
 				yLabel,
 				labelColors = [],
 				tooltipPosition;
 
-			if (this._options.tooltips.mode == 'single') {
+			if (this._options.tooltips.mode === 'single') {
 
 				xLabel = element._xScale.getLabelForIndex(element._index, element._datasetIndex);
 				yLabel = element._yScale.getLabelForIndex(element._index, element._datasetIndex);
@@ -229,7 +226,7 @@
 					yLabel.push(element._yScale.getLabelForIndex(element._index, datasetIndex));
 				});
 
-				helpers.each(this._active, function(active, i) {
+				helpers.each(this._active, function(active) {
 					labelColors.push({
 						borderColor: active._view.borderColor,
 						backgroundColor: active._view.backgroundColor
@@ -293,15 +290,15 @@
 
 			// Width
 			var tooltipWidth = 0;
-			helpers.each(vm.title, function(line, i) {
+			helpers.each(vm.title, function(line) {
 				ctx.font = helpers.fontString(vm.titleFontSize, vm._titleFontStyle, vm._titleFontFamily);
 				tooltipWidth = Math.max(tooltipWidth, ctx.measureText(line).width);
 			});
-			helpers.each(vm.body, function(line, i) {
+			helpers.each(vm.body, function(line) {
 				ctx.font = helpers.fontString(vm.bodyFontSize, vm._bodyFontStyle, vm._bodyFontFamily);
-				tooltipWidth = Math.max(tooltipWidth, ctx.measureText(line).width + (this._options.tooltips.mode != 'single' ? (vm.bodyFontSize + 2) : 0));
+				tooltipWidth = Math.max(tooltipWidth, ctx.measureText(line).width + (this._options.tooltips.mode !== 'single' ? (vm.bodyFontSize + 2) : 0));
 			}, this);
-			helpers.each(vm.footer, function(line, i) {
+			helpers.each(vm.footer, function(line) {
 				ctx.font = helpers.fontString(vm.footerFontSize, vm._footerFontStyle, vm._footerFontFamily);
 				tooltipWidth = Math.max(tooltipWidth, ctx.measureText(line).width);
 			});
@@ -331,17 +328,17 @@
 			var tooltipX = vm.x,
 				tooltipY = vm.y;
 
-			if (vm.yAlign == 'top') {
+			if (vm.yAlign === 'top') {
 				tooltipY = vm.y - vm.caretSize - vm.cornerRadius;
-			} else if (vm.yAlign == 'bottom') {
+			} else if (vm.yAlign === 'bottom') {
 				tooltipY = vm.y - tooltipHeight + vm.caretSize + vm.cornerRadius;
 			} else {
 				tooltipY = vm.y - (tooltipHeight / 2);
 			}
 
-			if (vm.xAlign == 'left') {
+			if (vm.xAlign === 'left') {
 				tooltipX = vm.x - tooltipTotalWidth;
-			} else if (vm.xAlign == 'right') {
+			} else if (vm.xAlign === 'right') {
 				tooltipX = vm.x + caretPadding + vm.caretSize;
 			} else {
 				tooltipX = vm.x + (tooltipTotalWidth / 2);
@@ -360,7 +357,7 @@
 			if (this._options.tooltips.enabled) {
 				ctx.fillStyle = helpers.color(vm.backgroundColor).alpha(vm.opacity).rgbString();
 
-				if (vm.xAlign == 'left') {
+				if (vm.xAlign === 'left') {
 
 					ctx.beginPath();
 					ctx.moveTo(vm.x - caretPadding, vm.y);
@@ -396,7 +393,7 @@
 					helpers.each(vm.title, function(title, i) {
 						ctx.fillText(title, xBase, yBase);
 						yBase += vm.titleFontSize + vm.titleSpacing; // Line Height and spacing
-						if (i + 1 == vm.title.length) {
+						if (i + 1 === vm.title.length) {
 							yBase += vm.titleMarginBottom - vm.titleSpacing; // If Last, add margin, remove spacing
 						}
 					}, this);
@@ -410,8 +407,8 @@
 				ctx.font = helpers.fontString(vm.bodyFontSize, vm._bodyFontStyle, vm._bodyFontFamily);
 
 				// Before Body
-				helpers.each(vm.beforeBody, function(beforeBody, i) {
-					ctx.fillText(vm.beforeBody, xBase, yBase);
+				helpers.each(vm.beforeBody, function(beforeBody) {
+					ctx.fillText(beforeBody, xBase, yBase);
 					yBase += vm.bodyFontSize + vm.bodySpacing;
 				});
 
@@ -419,7 +416,7 @@
 
 
 					// Draw Legend-like boxes if needed
-					if (this._options.tooltips.mode != 'single') {
+					if (this._options.tooltips.mode !== 'single') {
 						ctx.fillStyle = helpers.color(vm.labelColors[i].borderColor).alpha(vm.opacity).rgbString();
 						ctx.fillRect(xBase, yBase, vm.bodyFontSize, vm.bodyFontSize);
 
@@ -430,15 +427,15 @@
 					}
 
 					// Body Line
-					ctx.fillText(body, xBase + (this._options.tooltips.mode != 'single' ? (vm.bodyFontSize + 2) : 0), yBase);
+					ctx.fillText(body, xBase + (this._options.tooltips.mode !== 'single' ? (vm.bodyFontSize + 2) : 0), yBase);
 
 					yBase += vm.bodyFontSize + vm.bodySpacing;
 
 				}, this);
 
 				// After Body
-				helpers.each(vm.afterBody, function(afterBody, i) {
-					ctx.fillText(vm.afterBody, xBase, yBase);
+				helpers.each(vm.afterBody, function(afterBody) {
+					ctx.fillText(afterBody, xBase, yBase);
 					yBase += vm.bodyFontSize;
 				});
 
@@ -455,7 +452,7 @@
 					ctx.fillStyle = helpers.color(vm.footerColor).alpha(vm.opacity).rgbString();
 					ctx.font = helpers.fontString(vm.footerFontSize, vm._footerFontStyle, vm._footerFontFamily);
 
-					helpers.each(vm.footer, function(footer, i) {
+					helpers.each(vm.footer, function(footer) {
 						ctx.fillText(footer, xBase, yBase);
 						yBase += vm.footerFontSize + vm.footerSpacing;
 					}, this);

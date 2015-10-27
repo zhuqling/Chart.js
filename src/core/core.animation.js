@@ -47,7 +47,7 @@
 			});
 
 			// If there are no animations queued, manually kickstart a digest, for lack of a better word
-			if (this.animations.length == 1) {
+			if (this.animations.length === 1) {
 				helpers.requestAnimFrame.call(window, this.digestWrapper);
 			}
 		},
@@ -88,7 +88,7 @@
 
 				this.animations[i].animationObject.render(this.animations[i].chartInstance, this.animations[i].animationObject);
 
-				if (this.animations[i].animationObject.currentStep == this.animations[i].animationObject.numSteps) {
+				if (this.animations[i].animationObject.currentStep === this.animations[i].animationObject.numSteps) {
 					// executed the last frame. Remove the animation.
 					this.animations[i].chartInstance.animating = false;
 					this.animations.splice(i, 1);

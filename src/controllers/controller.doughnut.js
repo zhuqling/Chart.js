@@ -191,7 +191,7 @@
 
 		draw: function(ease) {
 			var easingDecimal = ease || 1;
-			helpers.each(this.getDataset().metaData, function(arc, index) {
+			helpers.each(this.getDataset().metaData, function(arc) {
 				arc.transition(easingDecimal).draw();
 			}, this);
 		},
