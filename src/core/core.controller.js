@@ -118,7 +118,7 @@
 			// Build the x axes
 			if (this.options.scales) {
 				if (this.options.scales.xAxes && this.options.scales.xAxes.length) {
-					helpers.each(this.options.scales.xAxes, function(xAxisOptions, index) {
+					helpers.each(this.options.scales.xAxes, function(xAxisOptions) {
 						var ScaleClass = Chart.scaleService.getScaleConstructor(xAxisOptions.type);
 						var scale = new ScaleClass({
 							ctx: this.chart.ctx,
@@ -133,7 +133,7 @@
 
 				if (this.options.scales.yAxes && this.options.scales.yAxes.length) {
 					// Build the y axes
-					helpers.each(this.options.scales.yAxes, function(yAxisOptions, index) {
+					helpers.each(this.options.scales.yAxes, function(yAxisOptions) {
 						var ScaleClass = Chart.scaleService.getScaleConstructor(yAxisOptions.type);
 						var scale = new ScaleClass({
 							ctx: this.chart.ctx,
@@ -184,7 +184,7 @@
 			}, this);
 			if (types.length > 1) {
 				for (var i = 1; i < types.length; i++) {
-					if (types[i] != types[i - 1]) {
+					if (types[i] !== types[i - 1]) {
 						this.isCombo = true;
 						break;
 					}
@@ -193,7 +193,7 @@
 		},
 
 		resetElements: function resetElements() {
-			helpers.each(this.data.datasets, function(dataset, datasetIndex) {
+			helpers.each(this.data.datasets, function(dataset) {
 				dataset.controller.reset();
 			}, this);
 		},
@@ -205,12 +205,12 @@
 			this.buildOrUpdateControllers(true);
 
 			// Make sure all dataset controllers have correct meta data counts
-			helpers.each(this.data.datasets, function(dataset, datasetIndex) {
+			helpers.each(this.data.datasets, function(dataset) {
 				dataset.controller.buildOrUpdateElements();
 			}, this);
 
 			// This will loop through any data and do the appropriate element update for the type
-			helpers.each(this.data.datasets, function(dataset, datasetIndex) {
+			helpers.each(this.data.datasets, function(dataset) {
 				dataset.controller.update();
 			}, this);
 			this.render(animationDuration, lazy);
@@ -218,7 +218,7 @@
 
 		render: function render(duration, lazy) {
 
-			if ((typeof duration !== 'undefined' && duration !== 0) || (typeof duration == 'undefined' && this.options.animation.duration !== 0)) {
+			if ((typeof duration !== 'undefined' && duration !== 0) || (typeof duration === 'undefined' && this.options.animation.duration !== 0)) {
 				var animation = new Chart.Animation();
 				animation.numSteps = (duration || this.options.animation.duration) / 16.66; //60 fps
 				animation.easing = this.options.animation.easing;
@@ -259,7 +259,7 @@
 			}
 
 			// Draw each dataset via its respective controller (reversed to support proper line stacking)
-			helpers.each(this.data.datasets, function(dataset, datasetIndex) {
+			helpers.each(this.data.datasets, function(dataset) {
 				if (helpers.isDatasetVisible(dataset)) {
 					dataset.controller.draw(ease);
 				}
@@ -276,9 +276,9 @@
 			var eventPosition = helpers.getRelativePosition(e, this.chart);
 			var elementsArray = [];
 
-			helpers.each(this.data.datasets, function(dataset, datasetIndex) {
+			helpers.each(this.data.datasets, function(dataset) {
 				if (helpers.isDatasetVisible(dataset)) {
-					helpers.each(dataset.metaData, function(element, index) {
+					helpers.each(dataset.metaData, function(element) {
 						if (element.inRange(eventPosition.x, eventPosition.y)) {
 							elementsArray.push(element);
 							return elementsArray;
@@ -294,9 +294,9 @@
 			var eventPosition = helpers.getRelativePosition(e, this.chart);
 			var elementsArray = [];
 
-			helpers.each(this.data.datasets, function(dataset, datasetIndex) {
+			helpers.each(this.data.datasets, function(dataset) {
 				if (helpers.isDatasetVisible(dataset)) {
-					helpers.each(dataset.metaData, function(element, index) {
+					helpers.each(dataset.metaData, function(element) {
 						if (element.inLabelRange(eventPosition.x, eventPosition.y)) {
 							elementsArray.push(element);
 						}
@@ -311,11 +311,11 @@
 			var eventPosition = helpers.getRelativePosition(e, this.chart);
 			var elementsArray = [];
 
-			helpers.each(this.data.datasets, function(dataset, datasetIndex) {
+			helpers.each(this.data.datasets, function(dataset) {
 				if (helpers.isDatasetVisible(dataset)) {
-					helpers.each(dataset.metaData, function(element, elementIndex) {
+					helpers.each(dataset.metaData, function(element) {
 						if (element.inLabelRange(eventPosition.x, eventPosition.y)) {
-							helpers.each(dataset.metaData, function(element, index) {
+							helpers.each(dataset.metaData, function(element) {
 								elementsArray.push(element);
 							}, this);
 						}
@@ -408,14 +408,11 @@
 				this.options.hover.onHover.call(this, this.active);
 			}
 
-			if (e.type == 'mouseup' || e.type == 'click') {
+			if (e.type === 'mouseup' || e.type === 'click') {
 				if (this.options.onClick) {
 					this.options.onClick.call(this, e, this.active);
 				}
 			}
-
-			var dataset;
-			var index;
 
 			// Remove styling for last active (even if it may still be active)
 			if (this.lastActive.length) {
