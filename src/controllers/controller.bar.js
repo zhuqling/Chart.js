@@ -180,10 +180,7 @@
 		},
 
 		calculateBarBase: function(datasetIndex, index) {
-
-			var xScale = this.getScaleForID(this.getDataset().xAxisID);
 			var yScale = this.getScaleForID(this.getDataset().yAxisID);
-
 			var base = 0;
 
 			if (yScale.options.stacked) {
@@ -226,10 +223,6 @@
 		getRuler: function() {
 
 			var xScale = this.getScaleForID(this.getDataset().xAxisID);
-			var yScale = this.getScaleForID(this.getDataset().yAxisID);
-			/*var datasetCount = !this.chart.isCombo ? this.chart.data.datasets.length : helpers.where(this.chart.data.datasets, function(ds) {
-				return ds.type == 'bar';
-			}).length;*/
 			var datasetCount = this.getBarCount();
 
 			var tickWidth = (function() {
@@ -342,7 +335,7 @@
 
 		draw: function(ease) {
 			var easingDecimal = ease || 1;
-			helpers.each(this.getDataset().metaData, function(rectangle, index) {
+			helpers.each(this.getDataset().metaData, function(rectangle) {
 				rectangle.transition(easingDecimal).draw();
 			}, this);
 		},
@@ -360,9 +353,9 @@
 			var dataset = this.chart.data.datasets[rectangle._datasetIndex];
 			var index = rectangle._index;
 
-			rectangle._model.backgroundColor = rectangle.custom && rectangle.custom.backgroundColor ? rectangle.custom.backgroundColor : helpers.getValueAtIndexOrDefault(this.getDataset().backgroundColor, index, this.chart.options.elements.rectangle.backgroundColor);
-			rectangle._model.borderColor = rectangle.custom && rectangle.custom.borderColor ? rectangle.custom.borderColor : helpers.getValueAtIndexOrDefault(this.getDataset().borderColor, index, this.chart.options.elements.rectangle.borderColor);
-			rectangle._model.borderWidth = rectangle.custom && rectangle.custom.borderWidth ? rectangle.custom.borderWidth : helpers.getValueAtIndexOrDefault(this.getDataset().borderWidth, index, this.chart.options.elements.rectangle.borderWidth);
+			rectangle._model.backgroundColor = rectangle.custom && rectangle.custom.backgroundColor ? rectangle.custom.backgroundColor : helpers.getValueAtIndexOrDefault(dataset.backgroundColor, index, this.chart.options.elements.rectangle.backgroundColor);
+			rectangle._model.borderColor = rectangle.custom && rectangle.custom.borderColor ? rectangle.custom.borderColor : helpers.getValueAtIndexOrDefault(dataset.borderColor, index, this.chart.options.elements.rectangle.borderColor);
+			rectangle._model.borderWidth = rectangle.custom && rectangle.custom.borderWidth ? rectangle.custom.borderWidth : helpers.getValueAtIndexOrDefault(dataset.borderWidth, index, this.chart.options.elements.rectangle.borderWidth);
 		}
 
 	});

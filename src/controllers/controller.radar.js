@@ -113,8 +113,6 @@
 		},
 
 		update: function update(reset) {
-
-			var line = this.getDataset().metaDataset;
 			var points = this.getDataset().metaData;
 
 			var scale = this.chart.scale;
@@ -228,7 +226,7 @@
 			var easingDecimal = ease || 1;
 
 			// Transition Point Locations
-			helpers.each(this.getDataset().metaData, function(point, index) {
+			helpers.each(this.getDataset().metaData, function(point) {
 				point.transition(easingDecimal);
 			}, this);
 
@@ -256,10 +254,10 @@
 			var dataset = this.chart.data.datasets[point._datasetIndex];
 			var index = point._index;
 
-			point._model.radius = point.custom && point.custom.radius ? point.custom.radius : helpers.getValueAtIndexOrDefault(this.getDataset().radius, index, this.chart.options.elements.point.radius);
-			point._model.backgroundColor = point.custom && point.custom.backgroundColor ? point.custom.backgroundColor : helpers.getValueAtIndexOrDefault(this.getDataset().pointBackgroundColor, index, this.chart.options.elements.point.backgroundColor);
-			point._model.borderColor = point.custom && point.custom.borderColor ? point.custom.borderColor : helpers.getValueAtIndexOrDefault(this.getDataset().pointBorderColor, index, this.chart.options.elements.point.borderColor);
-			point._model.borderWidth = point.custom && point.custom.borderWidth ? point.custom.borderWidth : helpers.getValueAtIndexOrDefault(this.getDataset().pointBorderWidth, index, this.chart.options.elements.point.borderWidth);
+			point._model.radius = point.custom && point.custom.radius ? point.custom.radius : helpers.getValueAtIndexOrDefault(dataset.radius, index, this.chart.options.elements.point.radius);
+			point._model.backgroundColor = point.custom && point.custom.backgroundColor ? point.custom.backgroundColor : helpers.getValueAtIndexOrDefault(dataset.pointBackgroundColor, index, this.chart.options.elements.point.backgroundColor);
+			point._model.borderColor = point.custom && point.custom.borderColor ? point.custom.borderColor : helpers.getValueAtIndexOrDefault(dataset.pointBorderColor, index, this.chart.options.elements.point.borderColor);
+			point._model.borderWidth = point.custom && point.custom.borderWidth ? point.custom.borderWidth : helpers.getValueAtIndexOrDefault(dataset.pointBorderWidth, index, this.chart.options.elements.point.borderWidth);
 		}
 
 	});
