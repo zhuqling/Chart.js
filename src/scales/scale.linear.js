@@ -203,7 +203,7 @@
 				pixel = (this.bottom - this.paddingBottom) - (innerHeight / range * (rightValue - this.start));
 				return Math.round(pixel);
 			}
-		},
+		}
 	});
 	Chart.scaleService.registerScaleType("linear", LinearScale, defaultConfig);
 

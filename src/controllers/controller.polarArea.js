@@ -11,12 +11,12 @@
 
 		scale: {
 			type: "radialLinear",
-			lineArc: true, // so that lines are circular
+			lineArc: true // so that lines are circular
 		},
 
 		//Boolean - Whether to animate the rotation of the chart
 		animateRotate: true,
-		animateScale: true,
+		animateScale: true
 	};
 
 	Chart.controllers.polarArea = function(chart, datasetIndex) {
@@ -53,7 +53,7 @@
 				this.getDataset().metaData[index] = this.getDataset().metaData[index] || new Chart.elements.Arc({
 					_chart: this.chart.chart,
 					_datasetIndex: this.index,
-					_index: index,
+					_index: index
 				});
 			}, this);
 		},
@@ -62,7 +62,7 @@
 			var arc = new Chart.elements.Arc({
 				_chart: this.chart.chart,
 				_datasetIndex: this.index,
-				_index: index,
+				_index: index
 			});
 
 			// Reset the point
@@ -159,7 +159,7 @@
 					borderColor: arc.custom && arc.custom.borderColor ? arc.custom.borderColor : helpers.getValueAtIndexOrDefault(this.getDataset().borderColor, index, this.chart.options.elements.arc.borderColor),
 
 					label: helpers.getValueAtIndexOrDefault(this.chart.data.labels, index, this.chart.data.labels[index])
-				},
+				}
 			});
 
 			arc.pivot();
@@ -203,7 +203,7 @@
 				xCenter: this.chart.width / 2,
 				yCenter: this.chart.height / 2
 			});
-		},
+		}
 
 	});
 }).call(this);

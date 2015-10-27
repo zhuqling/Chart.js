@@ -9,13 +9,13 @@
 
 	Chart.defaults.radar = {
 		scale: {
-			type: "radialLinear",
+			type: "radialLinear"
 		},
 		elements: {
 			line: {
-				tension: 0, // no bezier in radar
+				tension: 0 // no bezier in radar
 			}
-		},
+		}
 	};
 
 	Chart.controllers.radar = function(chart, datasetIndex) {
@@ -65,8 +65,8 @@
 					_index: index,
 					_model: {
 						x: 0, //xScale.getPixelForValue(null, index, true),
-						y: 0, //this.chartArea.bottom,
-					},
+						y: 0 //this.chartArea.bottom,
+					}
 				});
 			}, this);
 		},
@@ -75,7 +75,7 @@
 			var point = new Chart.elements.Point({
 				_chart: this.chart.chart,
 				_datasetIndex: this.index,
-				_index: index,
+				_index: index
 			});
 
 			// Reset the point
@@ -143,8 +143,8 @@
 					// Scale
 					scaleTop: scale.top,
 					scaleBottom: scale.bottom,
-					scaleZero: scaleBase,
-				},
+					scaleZero: scaleBase
+				}
 			});
 
 			this.getDataset().metaDataset.pivot();
@@ -179,8 +179,8 @@
 					borderWidth: point.custom && point.custom.borderWidth ? point.custom.borderWidth : helpers.getValueAtIndexOrDefault(this.getDataset().pointBorderWidth, index, this.chart.options.elements.point.borderWidth),
 
 					// Tooltip
-					hitRadius: point.custom && point.custom.hitRadius ? point.custom.hitRadius : helpers.getValueAtIndexOrDefault(this.getDataset().hitRadius, index, this.chart.options.elements.point.hitRadius),
-				},
+					hitRadius: point.custom && point.custom.hitRadius ? point.custom.hitRadius : helpers.getValueAtIndexOrDefault(this.getDataset().hitRadius, index, this.chart.options.elements.point.hitRadius)
+				}
 			});
 
 			point._model.skip = point.custom && point.custom.skip ? point.custom.skip : (isNaN(point._model.x) || isNaN(point._model.y));

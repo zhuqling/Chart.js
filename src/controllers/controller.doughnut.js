@@ -11,13 +11,13 @@
 			//Boolean - Whether we animate the rotation of the Doughnut
 			animateRotate: true,
 			//Boolean - Whether we animate scaling the Doughnut from the centre
-			animateScale: false,
+			animateScale: false
 		},
 		hover: {
 			mode: 'single'
 		},
 		//The percentage of the chart that we cut out of the middle.
-		cutoutPercentage: 50,
+		cutoutPercentage: 50
 	};
 
 	Chart.defaults.pie = helpers.clone(Chart.defaults.doughnut);
@@ -55,7 +55,7 @@
 				this.getDataset().metaData[index] = this.getDataset().metaData[index] || new Chart.elements.Arc({
 					_chart: this.chart.chart,
 					_datasetIndex: this.index,
-					_index: index,
+					_index: index
 				});
 			}, this);
 		},
@@ -64,7 +64,7 @@
 			var arc = new Chart.elements.Arc({
 				_chart: this.chart.chart,
 				_datasetIndex: this.index,
-				_index: index,
+				_index: index
 			});
 
 			if (colorForNewElement && helpers.isArray(this.getDataset().backgroundColor)) {
@@ -143,7 +143,7 @@
 				startAngle: Math.PI * -0.5, // use - PI / 2 instead of 3PI / 2 to make animations better. It means that we never deal with overflow during the transition function
 				circumference: (this.chart.options.animation.animateRotate) ? 0 : this.calculateCircumference(this.getDataset().data[index]),
 				outerRadius: (this.chart.options.animation.animateScale) ? 0 : this.outerRadius,
-				innerRadius: (this.chart.options.animation.animateScale) ? 0 : this.innerRadius,
+				innerRadius: (this.chart.options.animation.animateScale) ? 0 : this.innerRadius
 			};
 
 			helpers.extend(arc, {
@@ -166,7 +166,7 @@
 					borderColor: arc.custom && arc.custom.borderColor ? arc.custom.borderColor : helpers.getValueAtIndexOrDefault(this.getDataset().borderColor, index, this.chart.options.elements.arc.borderColor),
 
 					label: helpers.getValueAtIndexOrDefault(this.getDataset().label, index, this.chart.data.labels[index])
-				},
+				}
 			});
 
 			if (!reset) {
@@ -220,7 +220,7 @@
 			} else {
 				return 0;
 			}
-		},
+		}
 
 	});
 

@@ -57,8 +57,8 @@
 
 			beforeFooter: helpers.noop,
 			footer: helpers.noop,
-			afterFooter: helpers.noop,
-		},
+			afterFooter: helpers.noop
+		}
 	};
 
 	// Helper to push or concat based on if the 2nd parameter is an array or not
@@ -115,8 +115,8 @@
 					cornerRadius: options.tooltips.cornerRadius,
 					backgroundColor: options.tooltips.backgroundColor,
 					opacity: 0,
-					legendColorBackground: options.tooltips.multiKeyBackground,
-				},
+					legendColorBackground: options.tooltips.multiKeyBackground
+				}
 			});
 		},
 
@@ -245,14 +245,14 @@
 				beforeBody: this.getBeforeBody(xLabel, yLabel, element._index, element._datasetIndex, this._data),
 				body: this.getBody(xLabel, yLabel, element._index, element._datasetIndex, this._data),
 				afterBody: this.getAfterBody(xLabel, yLabel, element._index, element._datasetIndex, this._data),
-				footer: this.getFooter(xLabel, yLabel, element._index, element._datasetIndex, this._data),
+				footer: this.getFooter(xLabel, yLabel, element._index, element._datasetIndex, this._data)
 			});
 
 			helpers.extend(this._model, {
 				x: Math.round(tooltipPosition.x),
 				y: Math.round(tooltipPosition.y),
 				caretPadding: tooltipPosition.padding,
-				labelColors: labelColors,
+				labelColors: labelColors
 			});
 
 			return this;
@@ -459,7 +459,7 @@
 				}
 
 			}
-		},
+		}
 	});
 
 }).call(this);

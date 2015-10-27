@@ -21,13 +21,13 @@
 
 				// grid line settings
 				gridLines: {
-					offsetGridLines: true,
-				},
+					offsetGridLines: true
+				}
 			}],
 			yAxes: [{
-				type: "linear",
-			}],
-		},
+				type: "linear"
+			}]
+		}
 	};
 
 	Chart.controllers.bar = function(chart, datasetIndex) {
@@ -84,7 +84,7 @@
 				this.getDataset().metaData[index] = this.getDataset().metaData[index] || new Chart.elements.Rectangle({
 					_chart: this.chart.chart,
 					_datasetIndex: this.index,
-					_index: index,
+					_index: index
 				});
 			}, this);
 		},
@@ -93,7 +93,7 @@
 			var rectangle = new Chart.elements.Rectangle({
 				_chart: this.chart.chart,
 				_datasetIndex: this.index,
-				_index: index,
+				_index: index
 			});
 
 			var numBars = this.getBarCount();
@@ -173,8 +173,8 @@
 					width: this.calculateBarWidth(numBars),
 					backgroundColor: rectangle.custom && rectangle.custom.backgroundColor ? rectangle.custom.backgroundColor : helpers.getValueAtIndexOrDefault(this.getDataset().backgroundColor, index, this.chart.options.elements.rectangle.backgroundColor),
 					borderColor: rectangle.custom && rectangle.custom.borderColor ? rectangle.custom.borderColor : helpers.getValueAtIndexOrDefault(this.getDataset().borderColor, index, this.chart.options.elements.rectangle.borderColor),
-					borderWidth: rectangle.custom && rectangle.custom.borderWidth ? rectangle.custom.borderWidth : helpers.getValueAtIndexOrDefault(this.getDataset().borderWidth, index, this.chart.options.elements.rectangle.borderWidth),
-				},
+					borderWidth: rectangle.custom && rectangle.custom.borderWidth ? rectangle.custom.borderWidth : helpers.getValueAtIndexOrDefault(this.getDataset().borderWidth, index, this.chart.options.elements.rectangle.borderWidth)
+				}
 			});
 			rectangle.pivot();
 		},
@@ -245,7 +245,7 @@
 				categorySpacing: categorySpacing,
 				fullBarWidth: fullBarWidth,
 				barWidth: barWidth,
-				barSpacing: barSpacing,
+				barSpacing: barSpacing
 			};
 		},
 
@@ -323,8 +323,6 @@
 				} else {
 					return yScale.getPixelForValue(sumPos + value);
 				}
-
-				return yScale.getPixelForValue(value);
 			}
 
 			return yScale.getPixelForValue(value);

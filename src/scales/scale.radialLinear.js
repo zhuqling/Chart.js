@@ -31,7 +31,7 @@
 			backdropPaddingY: 2,
 
 			//Number - The backdrop padding to the side of the label in pixels
-			backdropPaddingX: 2,
+			backdropPaddingX: 2
 		},
 
 		pointLabels: {
@@ -45,8 +45,8 @@
 			fontSize: 10,
 
 			//String - Point label font colour
-			fontColor: "#666",
-		},
+			fontColor: "#666"
+		}
 	};
 
 	var LinearRadialScale = Chart.Scale.extend({

@@ -7,7 +7,7 @@
 
     // Default config for a category scale
     var defaultConfig = {
-        position: "bottom",
+        position: "bottom"
     };
 
     var DatasetScale = Chart.Scale.extend({
@@ -42,7 +42,7 @@
 
                 return this.top + Math.round(heightOffset);
             }
-        },
+        }
     });
 
     Chart.scaleService.registerScaleType("category", DatasetScale, defaultConfig);

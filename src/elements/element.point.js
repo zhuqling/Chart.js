@@ -25,7 +25,7 @@
 		// Hover
 		hitRadius: 1,
 		hoverRadius: 4,
-		hoverBorderWidth: 1,
+		hoverBorderWidth: 1
 	};
 
 

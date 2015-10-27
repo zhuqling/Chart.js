@@ -20,45 +20,45 @@
 			'week',
 			'month',
 			'quarter',
-			'year',
+			'year'
 		],
 		unit: {
 			'millisecond': {
 				display: 'SSS [ms]', // 002 ms
-				maxStep: 1000,
+				maxStep: 1000
 			},
 			'second': {
 				display: 'h:mm:ss a', // 11:20:01 AM
-				maxStep: 60,
+				maxStep: 60
 			},
 			'minute': {
 				display: 'h:mm:ss a', // 11:20:01 AM
-				maxStep: 60,
+				maxStep: 60
 			},
 			'hour': {
 				display: 'MMM D, hA', // Sept 4, 5PM
-				maxStep: 24,
+				maxStep: 24
 			},
 			'day': {
 				display: 'll', // Sep 4 2015
-				maxStep: 7,
+				maxStep: 7
 			},
 			'week': {
 				display: 'll', // Week 46, or maybe "[W]WW - YYYY" ?
-				maxStep: 4.3333,
+				maxStep: 4.3333
 			},
 			'month': {
 				display: 'MMM YYYY', // Sept 2015
-				maxStep: 12,
+				maxStep: 12
 			},
 			'quarter': {
 				display: '[Q]Q - YYYY', // Q3
-				maxStep: 4,
+				maxStep: 4
 			},
 			'year': {
 				display: 'YYYY', // 2015
-				maxStep: false,
-			},
+				maxStep: false
+			}
 		}
 	};
 
@@ -69,8 +69,8 @@
 			format: false, // false == date objects or use pattern string from http://momentjs.com/docs/#/parsing/string-format/
 			unit: false, // false == automatic or override with week, month, year, etc.
 			round: false, // none, or override with week, month, year, etc.
-			displayFormat: false, // defaults to unit's corresponding unitFormat below or override using pattern string from http://momentjs.com/docs/#/displaying/format/
-		},
+			displayFormat: false // defaults to unit's corresponding unitFormat below or override using pattern string from http://momentjs.com/docs/#/displaying/format/
+		}
 	};
 
 	var TimeScale = Chart.Scale.extend({
@@ -244,7 +244,7 @@
 			}
 			// Moment format parsing
 			return moment(label, this.options.time.format);
-		},
+		}
 	});
 	Chart.scaleService.registerScaleType("time", TimeScale, defaultConfig);
 

@@ -7,26 +7,26 @@
 
 	var defaultConfig = {
 		hover: {
-			mode: 'single',
+			mode: 'single'
 		},
 
 		scales: {
 			xAxes: [{
 				type: "linear", // bubble should probably use a linear scale by default
 				position: "bottom",
-				id: "x-axis-0", // need an ID so datasets can reference the scale
+				id: "x-axis-0" // need an ID so datasets can reference the scale
 			}],
 			yAxes: [{
 				type: "linear",
 				position: "left",
-				id: "y-axis-0",
-			}],
+				id: "y-axis-0"
+			}]
 		},
 
 		tooltips: {
 			template: "(<%= value.x %>, <%= value.y %>)",
-			multiTemplate: "<%if (datasetLabel){%><%=datasetLabel%>: <%}%>(<%= value.x %>, <%= value.y %>)",
-		},
+			multiTemplate: "<%if (datasetLabel){%><%=datasetLabel%>: <%}%>(<%= value.x %>, <%= value.y %>)"
+		}
 
 	};
 

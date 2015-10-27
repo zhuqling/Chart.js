@@ -7,27 +7,26 @@
 
 	var defaultConfig = {
 		hover: {
-			mode: 'single',
+			mode: 'single'
 		},
 
 		scales: {
 			xAxes: [{
 				type: "linear", // scatter should not use a category axis
 				position: "bottom",
-				id: "x-axis-1", // need an ID so datasets can reference the scale
+				id: "x-axis-1" // need an ID so datasets can reference the scale
 			}],
 			yAxes: [{
 				type: "linear",
 				position: "left",
-				id: "y-axis-1",
-			}],
+				id: "y-axis-1"
+			}]
 		},
 
 		tooltips: {
 			template: "(<%= value.x %>, <%= value.y %>)",
-			multiTemplate: "<%if (datasetLabel){%><%=datasetLabel%>: <%}%>(<%= value.x %>, <%= value.y %>)",
-		},
-
+			multiTemplate: "<%if (datasetLabel){%><%=datasetLabel%>: <%}%>(<%= value.x %>, <%= value.y %>)"
+		}
 	};
 
 	Chart.Scatter = function(context, config) {

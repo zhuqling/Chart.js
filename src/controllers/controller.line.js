@@ -19,8 +19,8 @@
 			yAxes: [{
 				type: "linear",
 				id: 'y-axis-0'
-			}],
-		},
+			}]
+		}
 	};
 
 
@@ -65,14 +65,14 @@
 			this.getDataset().metaDataset = this.getDataset().metaDataset || new Chart.elements.Line({
 				_chart: this.chart.chart,
 				_datasetIndex: this.index,
-				_points: this.getDataset().metaData,
+				_points: this.getDataset().metaData
 			});
 
 			helpers.each(this.getDataset().data, function(value, index) {
 				this.getDataset().metaData[index] = this.getDataset().metaData[index] || new Chart.elements.Point({
 					_chart: this.chart.chart,
 					_datasetIndex: this.index,
-					_index: index,
+					_index: index
 				});
 			}, this);
 		},
@@ -81,7 +81,7 @@
 			var point = new Chart.elements.Point({
 				_chart: this.chart.chart,
 				_datasetIndex: this.index,
-				_index: index,
+				_index: index
 			});
 
 			// Reset the point
@@ -155,8 +155,8 @@
 					// Scale
 					scaleTop: yScale.top,
 					scaleBottom: yScale.bottom,
-					scaleZero: scaleBase,
-				},
+					scaleZero: scaleBase
+				}
 			});
 			line.pivot();
 
@@ -200,8 +200,8 @@
 					borderColor: point.custom && point.custom.borderColor ? point.custom.borderColor : helpers.getValueAtIndexOrDefault(this.getDataset().pointBorderColor, index, this.chart.options.elements.point.borderColor),
 					borderWidth: point.custom && point.custom.borderWidth ? point.custom.borderWidth : helpers.getValueAtIndexOrDefault(this.getDataset().pointBorderWidth, index, this.chart.options.elements.point.borderWidth),
 					// Tooltip
-					hitRadius: point.custom && point.custom.hitRadius ? point.custom.hitRadius : helpers.getValueAtIndexOrDefault(this.getDataset().hitRadius, index, this.chart.options.elements.point.hitRadius),
-				},
+					hitRadius: point.custom && point.custom.hitRadius ? point.custom.hitRadius : helpers.getValueAtIndexOrDefault(this.getDataset().hitRadius, index, this.chart.options.elements.point.hitRadius)
+				}
 			});
 
 			point._model.skip = point.custom && point.custom.skip ? point.custom.skip : (isNaN(point._model.x) || isNaN(point._model.y));

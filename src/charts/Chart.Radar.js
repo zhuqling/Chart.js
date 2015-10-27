@@ -6,7 +6,7 @@
 	var helpers = Chart.helpers;
 
 	var defaultConfig = {
-		aspectRatio: 1,
+		aspectRatio: 1
 	};
 
 	Chart.Radar = function(context, config) {

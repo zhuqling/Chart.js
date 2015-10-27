@@ -26,7 +26,7 @@
 		borderDash: [],
 		borderDashOffset: 0.0,
 		borderJoinStyle: 'miter',
-		fill: true, // do we fill in the area between the line and its base axis
+		fill: true // do we fill in the area between the line and its base axis
 	};
 
 
@@ -185,7 +185,7 @@
 
 			ctx.stroke();
 			ctx.restore();
-		},
+		}
 	});
 
 }).call(this);

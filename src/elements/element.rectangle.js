@@ -9,7 +9,7 @@
 	Chart.defaults.global.elements.rectangle = {
 		backgroundColor: Chart.defaults.global.defaultColor,
 		borderWidth: 0,
-		borderColor: Chart.defaults.global.defaultColor,
+		borderColor: Chart.defaults.global.defaultColor
 	};
 
 	Chart.elements.Rectangle = Chart.Element.extend({
@@ -89,9 +89,6 @@
 					y: vm.base
 				};
 			}
-		},
+		}
 	});
-
-
-
 }).call(this);
