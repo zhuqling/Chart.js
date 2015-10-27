@@ -167,7 +167,6 @@
 				var originalLabelWidth = helpers.longestText(this.ctx, labelFont, this.ticks);
 				var cosRotation;
 				var sinRotation;
-				var firstRotatedWidth;
 
 				this.labelWidth = originalLabelWidth;
 
@@ -257,7 +256,6 @@
 
 				if (this.isHorizontal()) {
 					// A horizontal axis is more constrained by the height.
-					var maxLabelHeight = this.maxHeight - this.minSize.height;
 					var longestLabelWidth = helpers.longestText(this.ctx, labelFont, this.ticks);
 					var labelHeight = (Math.sin(helpers.toRadians(this.labelRotation)) * longestLabelWidth) + 1.5 * this.options.ticks.fontSize;
 
@@ -313,7 +311,7 @@
 
 		// Shared Methods
 		isHorizontal: function() {
-			return this.options.position == "top" || this.options.position == "bottom";
+			return this.options.position === "top" || this.options.position === "bottom";
 		},
 
 		// Get the correct value. NaN bad inputs, If the value type is object get the x or y based on whether we are horizontal or not
@@ -360,7 +358,7 @@
 		},
 
 		// Utility for getting the pixel location of a percentage of scale
-		getPixelForDecimal: function(decimal, includeOffset) {
+		getPixelForDecimal: function(decimal /*, includeOffset */) {
 			if (this.isHorizontal()) {
 				var innerWidth = this.width - (this.paddingLeft + this.paddingRight);
 				var valueOffset = (innerWidth * decimal) + this.paddingLeft;
@@ -388,8 +386,8 @@
 
 				if (this.isHorizontal()) {
 					setContextLineSettings = true;
-					var yTickStart = this.options.position == "bottom" ? this.top : this.bottom - 10;
-					var yTickEnd = this.options.position == "bottom" ? this.top + 10 : this.bottom;
+					var yTickStart = this.options.position === "bottom" ? this.top : this.bottom - 10;
+					var yTickEnd = this.options.position === "bottom" ? this.top + 10 : this.bottom;
 					skipRatio = false;
 
 					if ((this.options.ticks.fontSize + 4) * this.ticks.length > (this.width - (this.paddingLeft + this.paddingRight))) {
@@ -456,15 +454,15 @@
 						this.ctx.font = helpers.fontString(this.options.scaleLabel.fontSize, this.options.scaleLabel.fontStyle, this.options.scaleLabel.fontFamily);
 
 						scaleLabelX = this.left + ((this.right - this.left) / 2); // midpoint of the width
-						scaleLabelY = this.options.position == 'bottom' ? this.bottom - (this.options.scaleLabel.fontSize / 2) : this.top + (this.options.scaleLabel.fontSize / 2);
+						scaleLabelY = this.options.position === 'bottom' ? this.bottom - (this.options.scaleLabel.fontSize / 2) : this.top + (this.options.scaleLabel.fontSize / 2);
 
 						this.ctx.fillText(this.options.scaleLabel.labelString, scaleLabelX, scaleLabelY);
 					}
 
 				} else {
 					setContextLineSettings = true;
-					var xTickStart = this.options.position == "right" ? this.left : this.right - 5;
-					var xTickEnd = this.options.position == "right" ? this.left + 5 : this.right;
+					var xTickStart = this.options.position === "right" ? this.left : this.right - 5;
+					var xTickEnd = this.options.position === "right" ? this.left + 5 : this.right;
 
 					helpers.each(this.ticks, function(label, index) {
 						var yLineValue = this.getPixelForTick(index); // xvalues for grid lines
@@ -507,7 +505,7 @@
 
 							this.ctx.save();
 
-							if (this.options.position == "left") {
+							if (this.options.position === "left") {
 								if (this.options.ticks.mirror) {
 									xLabelValue = this.right + this.options.ticks.padding;
 									this.ctx.textAlign = "left";
@@ -538,9 +536,9 @@
 
 					if (this.options.scaleLabel.show) {
 						// Draw the scale label
-						scaleLabelX = this.options.position == 'left' ? this.left + (this.options.scaleLabel.fontSize / 2) : this.right - (this.options.scaleLabel.fontSize / 2);
+						scaleLabelX = this.options.position === 'left' ? this.left + (this.options.scaleLabel.fontSize / 2) : this.right - (this.options.scaleLabel.fontSize / 2);
 						scaleLabelY = this.top + ((this.bottom - this.top) / 2);
-						var rotation = this.options.position == 'left' ? -0.5 * Math.PI : 0.5 * Math.PI;
+						var rotation = this.options.position === 'left' ? -0.5 * Math.PI : 0.5 * Math.PI;
 
 						this.ctx.save();
 						this.ctx.translate(scaleLabelX, scaleLabelY);
