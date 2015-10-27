@@ -83,7 +83,7 @@
 			hover: {
 				onHover: null,
 				mode: 'single',
-				animationDuration: 400,
+				animationDuration: 400
 			},
 			onClick: null,
 			defaultColor: 'rgba(0,0,0,0.1)',
@@ -106,7 +106,7 @@
 
 				return text.join("");
 			}
-		},
+		}
 	};
 
 	if (typeof amd !== 'undefined') {

@@ -17,7 +17,7 @@
 			drawTicks: true,
 			zeroLineWidth: 1,
 			zeroLineColor: "rgba(0,0,0,0.25)",
-			offsetGridLines: false,
+			offsetGridLines: false
 		},
 
 		// scale label
@@ -31,7 +31,7 @@
 			labelString: '',
 
 			// display property
-			show: false,
+			show: false
 		},
 
 		// label settings
@@ -49,8 +49,8 @@
 			show: true,
 			callback: function(value) {
 				return '' + value;
-			},
-		},
+			}
+		}
 	};
 
 	Chart.Scale = Chart.Element.extend({
@@ -223,7 +223,7 @@
 
 			this.minSize = {
 				width: 0,
-				height: 0,
+				height: 0
 			};
 
 			// Width

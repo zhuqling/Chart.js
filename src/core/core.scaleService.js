@@ -100,7 +100,7 @@
 					minimumScaleSizes.push({
 						horizontal: false,
 						minSize: minSize,
-						scale: scaleInstance,
+						scale: scaleInstance
 					});
 				};
 
@@ -109,7 +109,7 @@
 					minimumScaleSizes.push({
 						horizontal: true,
 						minSize: minSize,
-						scale: scaleInstance,
+						scale: scaleInstance
 					});
 				};
 
@@ -156,7 +156,7 @@
 						left: totalLeftWidth,
 						right: totalRightWidth,
 						top: 0,
-						bottom: 0,
+						bottom: 0
 					};
 
 					if (wrapper) {
@@ -314,7 +314,7 @@
 					left: totalLeftWidth,
 					top: totalTopHeight,
 					right: totalLeftWidth + maxChartWidth,
-					bottom: totalTopHeight + maxChartHeight,
+					bottom: totalTopHeight + maxChartHeight
 				};
 
 				// Step 9

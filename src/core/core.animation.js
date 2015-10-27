@@ -10,7 +10,7 @@
 		duration: 1000,
 		easing: "easeOutQuart",
 		onProgress: function() {},
-		onComplete: function() {},
+		onComplete: function() {}
 	};
 
 	Chart.Animation = Chart.Element.extend({
@@ -20,7 +20,7 @@
 		render: null, // render function used by the animation service
 
 		onAnimationProgress: null, // user specified callback to fire on each step of the animation 
-		onAnimationComplete: null, // user specified callback to fire when the animation finishes
+		onAnimationComplete: null // user specified callback to fire when the animation finishes
 	});
 
 	Chart.animationService = {

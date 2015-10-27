@@ -124,7 +124,7 @@
 							ctx: this.chart.ctx,
 							options: xAxisOptions,
 							data: this.data,
-							id: xAxisOptions.id,
+							id: xAxisOptions.id
 						});
 
 						this.scales[scale.id] = scale;
@@ -139,7 +139,7 @@
 							ctx: this.chart.ctx,
 							options: yAxisOptions,
 							data: this.data,
-							id: yAxisOptions.id,
+							id: yAxisOptions.id
 						});
 
 						this.scales[scale.id] = scale;
@@ -153,7 +153,7 @@
 					ctx: this.chart.ctx,
 					options: this.options.scale,
 					data: this.data,
-					chart: this.chart,
+					chart: this.chart
 				});
 
 				this.scale = scale;
@@ -360,7 +360,7 @@
 			this.tooltip = new Chart.Tooltip({
 				_chart: this.chart,
 				_data: this.data,
-				_options: this.options,
+				_options: this.options
 			}, this);
 		},
 
@@ -460,7 +460,7 @@
 					this.tooltip._model.opacity = 1;
 
 					helpers.extend(this.tooltip, {
-						_active: this.tooltipActive,
+						_active: this.tooltipActive
 					});
 
 					this.tooltip.update();
@@ -508,7 +508,7 @@
 			this.lastActive = this.active;
 			this.lastTooltipActive = this.tooltipActive;
 			return this;
-		},
+		}
 	});
 
 }).call(this);
