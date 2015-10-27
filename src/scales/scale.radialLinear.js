@@ -69,7 +69,7 @@
 
 			helpers.each(this.data.datasets, function(dataset) {
 				if (helpers.isDatasetVisible(dataset)) {
-					helpers.each(dataset.data, function(rawValue, index) {
+					helpers.each(dataset.data, function(rawValue) {
 						var value = this.getRightValue(rawValue);
 						if (isNaN(value)) {
 							return;
@@ -200,8 +200,7 @@
 				xProtrusionLeft,
 				xProtrusionRight,
 				radiusReductionRight,
-				radiusReductionLeft,
-				maxWidthRadius;
+				radiusReductionLeft;
 			this.ctx.font = helpers.fontString(this.options.pointLabels.fontSize, this.options.pointLabels.fontStyle, this.options.pointLabels.fontFamily);
 			for (i = 0; i < this.getValueCount(); i++) {
 				// 5px to space the text slightly out - similar to what we do in the draw function.
@@ -268,7 +267,10 @@
 			return index * angleMultiplier - (Math.PI / 2);
 		},
 		getDistanceFromCenterForValue: function(value) {
-			if (value === null) return 0; // null always in center
+			if (value === null) {
+				return 0; // null always in center
+			}
+			
 			// Take into account half font size + the yPadding of the top value
 			var scalingFactor = this.drawingArea / (this.max - this.min);
 			if (this.options.reverse) {

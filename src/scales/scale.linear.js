@@ -78,7 +78,7 @@
 			} else {
 				helpers.each(this.data.datasets, function(dataset) {
 					if (helpers.isDatasetVisible(dataset) && (this.isHorizontal() ? dataset.xAxisID === this.id : dataset.yAxisID === this.id)) {
-						helpers.each(dataset.data, function(rawValue, index) {
+						helpers.each(dataset.data, function(rawValue) {
 							var value = this.getRightValue(rawValue);
 							if (isNaN(value)) {
 								return;
@@ -158,7 +158,7 @@
 				this.ticks.push(niceMin + (j * spacing));
 			}
 
-			if (this.options.position == "left" || this.options.position == "right") {
+			if (this.options.position === "left" || this.options.position === "right") {
 				// We are in a vertical orientation. The top value is the highest. So reverse the array
 				this.ticks.reverse();
 			}
