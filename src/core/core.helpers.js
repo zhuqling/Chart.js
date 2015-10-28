@@ -78,7 +78,7 @@
 							helpers.each(value, function(valueObj, index) {
 
 								if (index < baseArray.length) {
-									if (typeof baseArray[index] == 'object' && baseArray[index] !== null && typeof valueObj == 'object' && valueObj !== null) {
+									if (typeof baseArray[index] === 'object' && baseArray[index] !== null && typeof valueObj === 'object' && valueObj !== null) {
 										// Two objects are coming together. Do a merge of them.
 										baseArray[index] = helpers.configMerge(baseArray[index], valueObj);
 									} else {
@@ -90,7 +90,7 @@
 								}
 							});
 
-						} else if (base.hasOwnProperty(key) && typeof base[key] == "object" && base[key] !== null && typeof value == "object") {
+						} else if (base.hasOwnProperty(key) && typeof base[key] === "object" && base[key] !== null && typeof value === "object") {
 							// If we are overwriting an object with an object, do a merge of the properties.
 							base[key] = helpers.configMerge(base[key], value);
 
@@ -147,7 +147,7 @@
 								base[key].push(helpers.configMerge(valueObj.type ? Chart.scaleService.getScaleDefaults(valueObj.type) : {}, valueObj));
 							});
 						}
-					} else if (base.hasOwnProperty(key) && typeof base[key] == "object" && base[key] !== null && typeof value == "object") {
+					} else if (base.hasOwnProperty(key) && typeof base[key] === "object" && base[key] !== null && typeof value === "object") {
 						// If we are overwriting an object with an object, do a merge of the properties.
 						base[key] = helpers.configMerge(base[key], value);
 
@@ -176,7 +176,9 @@
 				return arrayToSearch.indexOf(item);
 			} else {
 				for (var i = 0; i < arrayToSearch.length; i++) {
-					if (arrayToSearch[i] === item) return i;
+					if (arrayToSearch[i] === item) {
+						return i;
+					}
 				}
 				return -1;
 			}
@@ -248,7 +250,9 @@
 		})();
 		helpers.warn = function(str) {
 			//Method for warning of errors
-			if (window.console && typeof window.console.warn === "function") console.warn(str);
+			if (window.console && typeof window.console.warn === "function") {
+				console.warn(str);
+			}
 		};
 		helpers.amd = (typeof define === 'function' && define.amd);
 		//-- Math methods
@@ -483,7 +487,7 @@
 				if (t === 0) {
 					return 0;
 				}
-				if ((t /= 1) == 1) {
+				if ((t /= 1) === 1) {
 					return 1;
 				}
 				if (!p) {
@@ -504,7 +508,7 @@
 				if (t === 0) {
 					return 0;
 				}
-				if ((t /= 1) == 1) {
+				if ((t /= 1) === 1) {
 					return 1;
 				}
 				if (!p) {
@@ -525,7 +529,7 @@
 				if (t === 0) {
 					return 0;
 				}
-				if ((t /= 1 / 2) == 2) {
+				if ((t /= 1 / 2) === 2) {
 					return 1;
 				}
 				if (!p) {
@@ -650,7 +654,9 @@
 		};
 		helpers.bindEvents = function(chartInstance, arrayOfEvents, handler) {
 			// Create the events object if it's not already present
-			if (!chartInstance.events) chartInstance.events = {};
+			if (!chartInstance.events) {
+				chartInstance.events = {};
+			}
 
 			each(arrayOfEvents, function(eventName) {
 				chartInstance.events[eventName] = function() {
@@ -819,7 +825,7 @@
 		};
 		helpers.isArray = function(obj) {
 			if (!Array.isArray) {
-				return Object.prototype.toString.call(arg) === '[object Array]';
+				return Object.prototype.toString.call(obj) === '[object Array]';
 			}
 			return Array.isArray(obj);
 		};
