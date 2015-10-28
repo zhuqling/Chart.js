@@ -113,8 +113,20 @@
 		},
 
 		update: function update(reset) {
-			var points = this.getDataset().metaData;
+			this.updateLine();
+			this.getDataset().metaDataset.pivot();
 
+			// Update Points
+			var points = this.getDataset().metaData;
+			helpers.each(points, function(point, index) {
+				this.updateElement(point, index, reset);
+			}, this);
+
+
+			// Update bezier control points
+			this.updateBezierControlPoints();
+		},
+		updateLine: function() {
 			var scale = this.chart.scale;
 			var scaleBase;
 
@@ -146,17 +158,6 @@
 					scaleZero: scaleBase
 				}
 			});
-
-			this.getDataset().metaDataset.pivot();
-
-			// Update Points
-			helpers.each(points, function(point, index) {
-				this.updateElement(point, index, reset);
-			}, this);
-
-
-			// Update bezier control points
-			this.updateBezierControlPoints();
 		},
 		updateElement: function(point, index, reset) {
 			var pointPosition = this.chart.scale.getPointPositionForValue(index, this.getDataset().data[index]);

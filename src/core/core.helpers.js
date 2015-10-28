@@ -808,7 +808,6 @@
 			// Insert the iframe so that contentWindow is available
 			node.insertBefore(hiddenIframe, node.firstChild);
 
-			var timer = 0;
 			(hiddenIframe.contentWindow || hiddenIframe).onresize = function() {
 				if (callback) {
 					callback();
