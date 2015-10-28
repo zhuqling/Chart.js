@@ -408,8 +408,10 @@
 
 				// Before Body
 				helpers.each(vm.beforeBody, function(beforeBody) {
-					ctx.fillText(beforeBody, xBase, yBase);
-					yBase += vm.bodyFontSize + vm.bodySpacing;
+					if (beforeBody) {
+						ctx.fillText(beforeBody, xBase, yBase);
+						yBase += vm.bodyFontSize + vm.bodySpacing;
+					}
 				});
 
 				helpers.each(vm.body, function(body, i) {
@@ -435,8 +437,10 @@
 
 				// After Body
 				helpers.each(vm.afterBody, function(afterBody) {
-					ctx.fillText(afterBody, xBase, yBase);
-					yBase += vm.bodyFontSize;
+					if (afterBody) {
+						ctx.fillText(afterBody, xBase, yBase);
+						yBase += vm.bodyFontSize;
+					}
 				});
 
 				yBase -= vm.bodySpacing; // Remove last body spacing
