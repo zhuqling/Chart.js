@@ -813,6 +813,73 @@
 			ctx.lineTo(x, y + radius);
 			ctx.quadraticCurveTo(x, y, x + radius, y);
 			ctx.closePath();
+		},
+		djb2 = helpers.djb2 = function(str){
+	    var hash = 5381;
+	    for (var i = 0; i < str.length; i++) {
+        hash = ((hash << 5) + hash) + str.charCodeAt(i); /* hash * 33 + c */
+	    }
+	    return hash;
+		},
+		hashStringToColor = helpers.hashStringToColor = function(str) {
+	    var hash = djb2(str);
+	    var r = (hash & 0xFF0000) >> 16;
+	    var g = (hash & 0x00FF00) >> 8;
+	    var b = hash & 0x0000FF;
+	    return r + ',' + g + ',' + b;
+		},
+		defaultColor = helpers.defaultColor = function(chartType, color, type, key) {
+	    if(color === undefined || color === null) {
+	    	var opacity = 1.0;
+	    	switch(chartType){
+	    		case 'line':
+	    		case 'radar':
+	    			if(type === 'pointStroke' || type === 'pointHighlightFill') return "#fff";
+	    			switch(type){
+	    				case 'fill':
+	    					opacity = 0.2;
+	    					break;
+	    				case 'stroke':
+	    				case 'point':
+	    				case 'pointHighlightStroke':
+	    					opacity = 1.0;
+	    					break;
+	    			}
+	    			break;
+	    		case 'bar':
+		    		switch(type){
+	    				case 'fill':
+	    					opacity = 0.5;
+	    					break;
+	    				case 'stroke':
+	    					opacity = 0.8;
+	    					break;
+	    				case 'highlightFill':
+	    					opacity = 0.75;
+	    					break;
+	    				case 'highlightStroke':
+	    					opacity = 1.0;
+	    					break;
+	    			}
+	    			break;
+	    		case 'polararea':
+	    		case 'pie':
+	    		case 'doughnut':
+	    			switch(type){
+	    				case 'color':
+	    					opacity = 1.0;
+	    					break;
+	    				case 'highlight':
+	    					opacity = 0.8;
+	    					break;
+    				}
+	    			break;
+	    	}
+
+        var colorCode = hashStringToColor(key+"random");
+        color = "rgba("+colorCode+","+opacity+")";
+	    }
+	    return color;
 		};
 
 
@@ -2121,6 +2188,10 @@
 
 			//Iterate through each of the datasets, and build this into a property of the chart
 			helpers.each(data.datasets,function(dataset,datasetIndex){
+				dataset.fillColor = helpers.defaultColor('bar', dataset.fillColor, 'fill', datasetIndex);
+				dataset.strokeColor = helpers.defaultColor('bar', dataset.strokeColor, 'stroke', datasetIndex);
+				dataset.highlightFill = helpers.defaultColor('bar', dataset.highlightFill, 'highlightFill', datasetIndex);
+				dataset.highlightStroke = helpers.defaultColor('bar', dataset.highlightStroke, 'highlightStroke', datasetIndex);
 
 				var datasetObject = {
 					label : dataset.label || null,
@@ -2419,8 +2490,8 @@
 				value : segment.value,
 				outerRadius : (this.options.animateScale) ? 0 : this.outerRadius,
 				innerRadius : (this.options.animateScale) ? 0 : (this.outerRadius/100) * this.options.percentageInnerCutout,
-				fillColor : segment.color,
-				highlightColor : segment.highlight || segment.color,
+				fillColor : helpers.defaultColor('doughnut', segment.color, 'color', index), // segment.color,
+				highlightColor : helpers.defaultColor('doughnut', segment.highlight || segment.color, 'highlight', index), // segment.highlight || segment.color,
 				showStroke : this.options.segmentShowStroke,
 				strokeWidth : this.options.segmentStrokeWidth,
 				strokeColor : this.options.segmentStrokeColor,
@@ -2598,7 +2669,12 @@
 			}
 
 			//Iterate through each of the datasets, and build this into a property of the chart
-			helpers.each(data.datasets,function(dataset){
+			helpers.each(data.datasets,function(dataset, datasetIndex){
+				dataset.fillColor = helpers.defaultColor('line', dataset.fillColor, 'fill', datasetIndex);
+				dataset.strokeColor = helpers.defaultColor('line', dataset.strokeColor, 'stroke', datasetIndex);
+				dataset.pointColor = helpers.defaultColor('line', dataset.pointColor, 'point', datasetIndex);
+				dataset.pointHighlightFill = helpers.defaultColor('line', dataset.pointHighlightFill, 'pointHighlightFill', datasetIndex);
+				dataset.pointHightlightStroke = helpers.defaultColor('line', dataset.pointHightlightStroke, 'pointHightlightStroke', datasetIndex);
 
 				var datasetObject = {
 					label : dataset.label || null,
@@ -3015,8 +3091,8 @@
 			var index = atIndex || this.segments.length;
 
 			this.segments.splice(index, 0, new this.SegmentArc({
-				fillColor: segment.color,
-				highlightColor: segment.highlight || segment.color,
+				fillColor: helpers.defaultColor('polararea', segment.color, 'color', index), // segment.color,
+				highlightColor: helpers.defaultColor('polararea', segment.highlight || segment.color, 'highlight', index), // segment.highlight || segment.color,
 				label: segment.label,
 				value: segment.value,
 				outerRadius: (this.options.animateScale) ? 0 : this.scale.calculateCenterOffset(segment.value),
@@ -3079,7 +3155,7 @@
 			helpers.each(this.segments,function(segment){
 				segment.save();
 			});
-			
+
 			this.reflow();
 			this.render();
 		},
@@ -3231,7 +3307,13 @@
 			}
 
 			//Iterate through each of the datasets, and build this into a property of the chart
-			helpers.each(data.datasets,function(dataset){
+			helpers.each(data.datasets,function(dataset, datasetIndex){
+				dataset.fillColor = helpers.defaultColor('radar', dataset.fillColor, 'fill', datasetIndex);
+				dataset.strokeColor = helpers.defaultColor('radar', dataset.strokeColor, 'stroke', datasetIndex);
+				dataset.pointColor = helpers.defaultColor('radar', dataset.pointColor, 'point', datasetIndex);
+				dataset.pointStrokeColor = helpers.defaultColor('radar', dataset.pointStrokeColor, 'pointStroke', datasetIndex);
+				dataset.pointHighlightFill = helpers.defaultColor('radar', dataset.pointHighlightFill, 'pointHighlightFill', datasetIndex);
+				dataset.pointHighlightStroke = helpers.defaultColor('radar', dataset.pointHighlightStroke, 'pointHighlightStroke', datasetIndex);
 
 				var datasetObject = {
 					label: dataset.label || null,
